@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta author="Mônica Sousa">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Formulário de Cadastro</title>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+
+    body {
+        background-color: white;
+        font-family: 'Cabin', sans-serif;
+    }
+
+    .formulario {
+        width: 600px;
+        margin: auto;
+        border-style: solid;
+        border-width: 3px;
+        border-color: #495057;
+        padding: 30px;
+        margin-top: 20px;
+
+    }
+
+    input, select, label {
+        font-weight: 400;
+    }
+
+    .titulo {
+        text-align: center; 
+        margin-bottom: 20px; 
+        margin-top: 10px;
+        font-weight: 300;
+        color: #17a2b8;
+    }
+
+    </style>
+
+  </head>
+  <body>
+    <form action="" class="formulario needs-validation" novalidate>
+    <h1 class="titulo">Formulário de Cadastro</h1>
+    <hr>
+    <input type="hidden" id="hdnCadastra" name="hdnCadastra" value="0">
+
+      <!-- Nome e Data -->
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="InputNome">Nome Completo</label>
+            <input type="text" name="InputNome" id="InputNome" class="form-control" onkeypress="return SomenteLetras();" required>
+            <div class="invalid-feedback">Por favor, insira neste campo.</div>
+          </div>
+          </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="data_nasc">Data de Nascimento</label>
+            <input type="date" name="data_nasc" id="data_nasc" class="form-control" required>
+            <div class="invalid-feedback">Por favor, insira neste campo.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sexo e Estado Civil -->
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="sexo">Sexo</label>
+            <select name="sexo" id="sexo" class="form-control" required>
+              <option selected disabled>Selecione</option>
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="estado_civil">Estado Civil</label>
+            <select name="estado_civil" id="estado_civil" class="form-control" required>
+              <option selected disabled>Selecione</option>
+              <option value="casado">Casado</option>
+              <option value="solteiro">Solteiro</option>
+              <option value="viuvo">Viúvo</option>
+              <option value="divorciado">Divorciado</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Nome dos Pais -->
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="nome_mae">Nome da Mãe</label>
+            <input type="text" name="nome_mae" id="nome_mae" class="form-control" onkeypress="return SomenteLetras();" required>
+            <div class="invalid-feedback">Por favor, insira neste campo.</div>
+          </div>
+          </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="nome_pai">Nome do Pai</label>
+            <input type="text" name="nome_pai" id="nome_pai" class="form-control" onkeypress="return SomenteLetras();" required>
+            <div class="invalid-feedback">Por favor, insira neste campo.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CPF e RG -->
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input type="text" name="cpf" id="cpf" class="form-control" maxlength="14" onkeypress="formatar('###.###.###-##', this); return somenteNumeros(event)" onBlur="ValidarCPF(this);" required>
+            <div class="invalid-feedback">Por favor, insira neste campo.</div>
+          </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="rg">RG</label>
+              <input type="text" name="rg" id="rg" class="form-control" maxlength="12" onkeypress="formatar('##.###.###-#', this); return somenteNumeros(event)" required>
+              <div class="invalid-feedback">Por favor, insira neste campo.</div>
+            </div>
+            </div>
+      </div>
+
+      <!-- Telefone residencial e celular -->
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="tel_res">Telefone Residencial</label>
+            <input type="text" name="tel_res" id="tel_res" class="form-control" maxlength="12" onkeypress="formatar('00 0000-0000', this); return somenteNumeros(event)" required>
+            <div class="invalid-feedback">Por favor, insira neste campo.</div>
+          </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="tel_ces">Telefone Celular</label>
+              <input type="text" name="tel_ces" id="tel_ces" class="form-control" maxlength="13" onkeypress="formatar('00 00000-0000', this); return somenteNumeros(event)" required>
+              <div class="invalid-feedback">Por favor, insira neste campo.</div>
+            </div>
+            </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control" onkeypress="return SomenteEmail();" required>
+        <div class="invalid-feedback">Por favor, insira neste campo.</div>
+      </div>
+
+    
+      <center><button style="margin-top: 20px ;" type="submit" class="btn btn-outline-info w-25 p-3">Cadastrar</button></center>
+    </form>
+    </div>
+    
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+<script type="text/javascript">
+//Função somente números----------------------
+function somenteNumeros(e) {
+var charCode = e.charCode ? e.charCode : e.keyCode;
+// charCode 8 = backspace   
+// charCode 9 = tab
+if (charCode != 8 && charCode != 9) {
+// charCode 48 equivale a 0   
+// charCode 57 equivale a 9
+if (charCode < 48 || charCode > 57) {
+return false;
+}
+}
+}
+
+
+  //Função somente letras com espaço----------------------
+function SomenteLetras(){
+var tecla=(window.event)?event.keyCode:e.which;   
+if((tecla>64 && tecla<91)) return true;
+else{
+if (tecla>96 && tecla<123 || tecla==32) return true;
+else  return false;
+}
+
+}
+
+
+//função somente caracteres de email----------------------
+function SomenteEmail(){
+var tecla=(window.event)?event.keyCode:e.which;   
+if((tecla>63 && tecla<91 || tecla==46)) return true;
+else{
+if (tecla>96 && tecla<123 || tecla==95) return true;
+else{
+if (tecla>47 && tecla<58) return true;
+else
+return false;
+}
+}
+}
+
+//Função para validar CPF----------------------
+function ValidarCPF (input) {
+s = input.value;
+filteredValues = ".-/"; 
+var i;
+var returnString = "";
+for (i = 0; i < s.length; i++) { 
+var c = s.charAt(i);
+if (filteredValues.indexOf(c) == -1) returnString += c;
+}
+if (returnString=='11111111111' || returnString=='22222222222' || 
+returnString=='33333333333' || returnString=='44444444444' || 
+returnString=='55555555555' || returnString=='66666666666' || 
+returnString=='77777777777' || returnString=='88888888888' || 
+returnString=='99999999999' || returnString=='00000000000' || returnString=='00000000191')
+{alert('CFP Inválido!'); input.value=""; return false;}
+if (returnString.length != 11) {sim=false}
+else {sim=true}
+if (sim ) {
+for (i=0;((i<=(returnString.length-1))&& sim); i++) {
+val = returnString.charAt(i)
+if ((val!="9")&&(val!="0")&&(val!="1")&&(val!="2")&&(val!="3")&&(val!="4")
+&& (val!="5")&&(val!="6")&&(val!="7")&&(val!="8")) {sim=false}
+}
+if (sim) {
+soma = 0
+for (i=0;i<=8;i++) {
+val = eval(returnString.charAt(i))
+soma = soma + (val*(i+1))
+}
+resto = soma % 11
+if (resto>9) dig = resto -10
+else  dig = resto
+if (dig != eval(returnString.charAt(9))) { sim=false }
+else { 
+soma = 0
+for (i=0;i<=7;i++) {
+val = eval(returnString.charAt(i+1))
+soma = soma + (val*(i+1))
+}
+soma = soma + (dig * 9)
+resto = soma % 11
+if (resto>9) dig = resto -10
+else  dig = resto
+if (dig != eval(returnString.charAt(10))) { sim = false }
+else {sim = true;}
+}
+}
+}
+
+if (sim != true) {
+if (input.value != ''){
+alert("CPF Inválido! Digite novamente.");
+input.value = '';
+return false;
+}
+else{
+return false;  
+}	 
+}
+}
+
+
+//Função para formatar mascara----------------------
+function formatar(mascara, documento){
+var i = documento.value.length;
+var saida = mascara.substring(0,1);
+var texto = mascara.substring(i)
+
+if (texto.substring(0,1) != saida){
+documento.value += texto.substring(0,1);
+
+}
+}
+
+//123
+var form = document.querySelector('.needs-validation');
+
+form.addEventListener('submit', function(event) {
+if (form.checkValidity() === false) {
+  event.preventDefault();
+  event.stopPropagation();
+}
+  form.classList.add('was-validated');
+})
+
+</script>
